@@ -1,9 +1,13 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import AdminHeader from './AdminHeader'
 import AdminFooter from './AdminFooter'
+import { isAutheticated } from '../../auth'
 
 const AdminLayout = () => {
+  if(!isAutheticated() || isAutheticated().user.role !==1){
+    return <Navigate to='/login'/>
+  }
   return (
     <>
     <AdminHeader/>
