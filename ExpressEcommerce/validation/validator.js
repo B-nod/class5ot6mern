@@ -9,7 +9,7 @@ exports.categoryValidation=[
 exports.productValidation = [
     check('product_name','product name is required').notEmpty()
     .isLength({min:3}).withMessage('product name must be more than 3 characters'),
-    check('prduct_price', 'price is required').notEmpty()
+    check('product_price', 'price is required').notEmpty()
     .isNumeric().withMessage('price must be a numeric value'),
     check('countInStock', 'stock is required').notEmpty()
     .isNumeric().withMessage('stock must be a numeric value'),
