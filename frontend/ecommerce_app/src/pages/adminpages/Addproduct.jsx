@@ -21,7 +21,7 @@ const Addproduct = () => {
     product_image:""
   })
 
-  const{product_name, product_price, product_description, countInStock}=product
+  const{product_name, product_price, product_description, countInStock, product_image, category:pcategory}=product
   const[success, setSuccess] = useState(false)
   const[error, setError] = useState('')
 
@@ -45,12 +45,12 @@ const Addproduct = () => {
     event.preventDefault()
     try{
       const formData = new FormData()
-      formData.append('product_name', product.product_name)
-      formData.append('product_price', product.product_price)
-      formData.append('product_description', product.product_description)
-      formData.append('countInStock', product.countInStock)
-      formData.append('product_image', product.product_image)
-      formData.append('category', product.category)
+      formData.append('product_name', product_name)
+      formData.append('product_price', product_price)
+      formData.append('product_description', product_description)
+      formData.append('countInStock', countInStock)
+      formData.append('product_image', product_image)
+      formData.append('category', pcategory)
 
       const config = {
         headers:{
@@ -168,6 +168,7 @@ const showSuccess = ()=>{
    </svg>
  </label>
  <select name="" id="" 
+ value={pcategory}
  onChange={onHandleSubmit('category')}
  className='block w-full  px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none'>
   {category.map((c,i)=>(

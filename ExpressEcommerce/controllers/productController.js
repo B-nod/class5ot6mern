@@ -21,6 +21,7 @@ exports.postProduct = async(req,res)=>{
 // to show all the product
 exports.productlist = async(req, res)=>{
     const product = await Product.find()
+    .populate('category', 'category_name') // to see data of connect table
      if(!product){
         return res.status(400).json({error:"something went wrong"})
     }
