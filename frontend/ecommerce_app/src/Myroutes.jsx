@@ -14,6 +14,7 @@ import CartPage from "./components/usercomponents/CartPage";
 import AddCategory from "./pages/adminpages/AddCategory";
 import CategoryList from "./pages/adminpages/CategoryList";
 import EmailVerify from "./auth/EmailVerify";
+import UpdateProduct from "./pages/adminpages/UpdateProduct";
 
 const Myroutes = () => {
   return (
@@ -32,12 +33,13 @@ const Myroutes = () => {
           </Route>
 
                {/* route for admin pages */}
-        <Route path="/admin" element={<AdminHeader />}>
+        <Route path="/admin/" element={<AdminHeader />}>
             <Route index element={<Dashboard />} />
             <Route path="addproduct" element={<Addproduct/>}/>
             <Route path="productlist" element={<ProductList/>}/>
             <Route path="addcategory" element={<AddCategory/>}/>
             <Route path="categorylist" element={<CategoryList/>}/>
+            <Route path="updateproduct/:productId" element={<UpdateProduct/>}/>
             
 
          

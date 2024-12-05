@@ -4,6 +4,8 @@ import axios from 'axios'
 import { isAutheticated } from '../../auth'
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPenSquare } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ProductList = () => {
@@ -16,11 +18,28 @@ const ProductList = () => {
         ))
         .catch(err=>console.log(err))
     }, [])
+
+    // delete product
+    const deleteProduct = (id) =>{
+        const confirmed = window.confirm("Are you sure want to delete this product ?")
+        if(confirmed){
+            axios.delete(`/api/deleteproduct/${id}`, {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(res=>{
+                toast.success("Product deleted !")
+                setProduct(product.filter((p)=>p._id!==id))
+            })
+            .catch(err=>toast.err("Failed to delete !"))
+        }
+    }
   return (
     <>
     
     
-
+<ToastContainer theme='colored' position='top-center' />
 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -72,8 +91,10 @@ const ProductList = () => {
                     {p.category.category_name}
                 </td>
                 <td className="px-6 py-4">
-                    <Link to="#" className="font-medium text-blue-600 text-2xl dark:text-blue-500 hover:underline"><FaPenSquare /></Link>
-                    <Link to="#" className="font-medium text-red-600 text-2xl dark:text-red-500 hover:underline"><FaTrashAlt /></Link>
+                    <Link to={`/admin/updateproduct/${p._id}`} className="font-medium text-blue-600 text-2xl dark:text-blue-500 hover:underline"><FaPenSquare /></Link>
+                    <Link to="#" 
+                    onClick={()=>deleteProduct(p._id)}
+                    className="font-medium text-red-600 text-2xl dark:text-red-500 hover:underline"><FaTrashAlt /></Link>
                 </td>
             </tr>
                 </>
