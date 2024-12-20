@@ -6,7 +6,7 @@ exports.postOrder = async(req,res)=>{
     const orderItemIds = Promise.all(req.body.orderItems.map(async orderItem=>{
          let newOrderItem = new OrderItem({
             quantity:orderItem.quantity,
-            product:orderItem.product,
+            product:orderItem.id,
 
          })
          newOrderItem = await newOrderItem.save()

@@ -85,7 +85,10 @@ const ProductList = () => {
                     {p.product_description}
                 </td>
                 <td className="px-6 py-4">
-                    <img src={`http://localhost:8080/${p.product_image}`} alt={p.product_name} className='w-[200px]' />
+                <img src={`http://localhost:8080/public/uploads/${p.product_image.split('/').pop()}`} alt={p.product_name} className='w-[200px]' />
+
+
+
                 </td>
                 <td className="px-6 py-4">
                     {p.category.category_name}

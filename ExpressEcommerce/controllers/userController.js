@@ -35,14 +35,12 @@ exports.postUser = async(req,res)=>{
                 })
             }
             // send email process
-            const url = process.env.FRONTEND_URL+'\/email\/confirmation\/'+token.token
-          
-            // localhost:5173/email/confirmation/adkjadnfjkasdabd
+            const url = process.env.FRONT_END_URL+'\/email\/confirmation\/'+token.token
+            // locahost:3000/email/confirmation/6y62
             sendEmail({
                 from:'no-reply@ecommerce.com',
                 to:user.email,
                 subject:'Email Verification Link',
-                
                 text:`Hello, \n\n please verify your email by click in the below link: \n\n http:\/\/${req.headers.host}\/api\/confirmation\/${token.token}`,
                 html: `<h1>Verify Your Email Account </h1>  <a href="${url}">Click to verify</a>`
                 // http://localhost:8080/api/confirmation/456789
@@ -136,12 +134,16 @@ exports.forgetPassword = async(req,res)=>{
         return res.status(400).json({error:'failed to create token'})
      }
 
+     // Frontend URL for the reset password page
+    const frontendUrl = `http://${process.env.FRONTEND_HOST || 'localhost:5173'}/reset/${token.token}`;
+
        // send email process
        sendEmail({
         from:'no-reply@ecommerce.com',
         to:user.email,
         subject:'Password Reset Link',
-        text:`Hello, \n\n please reset your password by click in the below link: \n\n http:\/\/${req.headers.host}\/api\/resetpassword\/${token.token}`
+        text: `Hello, \n\n Please reset your password by clicking the link below: \n\n ${frontendUrl}`
+        // text:`Hello, \n\n please reset your password by click in the below link: \n\n http:\/\/${req.headers.host}\/api\/resetpassword\/${token.token}`
         // http://localhost:8080/api/resetpassword/456789
     })
     res.json({message:'password reset link has been sent successfully'})

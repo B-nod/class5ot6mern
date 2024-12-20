@@ -6,7 +6,7 @@ const Homepage = () => {
   return (
     <>
     <Carousel/>
-    <Cards/>
+
     </>
   )
 }

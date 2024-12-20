@@ -6,17 +6,18 @@ exports.categoryValidation=[
     .isLength({min:3}).withMessage('category name must be of at least 3 characters')
 ]
 
+// Product validation
 exports.productValidation = [
-    check('product_name','product name is required').notEmpty()
-    .isLength({min:3}).withMessage('product name must be more than 3 characters'),
+    check('product_name', 'product name is required').notEmpty()
+        .isLength({ min: 3 }).withMessage('product name must be more than 3 characters'),
     check('product_price', 'price is required').notEmpty()
-    .isNumeric().withMessage('price must be a numeric value'),
+        .isNumeric().withMessage('price must be a numeric value'),
     check('countInStock', 'stock is required').notEmpty()
-    .isNumeric().withMessage('stock must be a numeric value'),
+        .isNumeric().withMessage('stock must be a numeric value'),
     check('product_description', 'description is required').notEmpty()
-    .isLength({min:20}).withMessage('description must be at least of 20 characters or more'),
+        .isLength({ min: 20 }).withMessage('description must be at least 20 characters'),
     check('category', 'category is required').notEmpty()
-]
+];
 
 exports.userValidation=[
     check('name', 'name is required').notEmpty()

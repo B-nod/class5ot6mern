@@ -10,6 +10,7 @@ router.get('/productlist', productlist)
 router.get('/productdetails/:id', requireSignin, requireAdmin, productDetails),
 router.put('/updateproduct/:id', requireSignin, requireAdmin, upload.single('product_image'), productValidation, validation,  updateProduct),
 router.delete('/deleteproduct/:id', deleteProduct)
+router.get('/productdetail/:id', productDetails),
 
 
 module.exports = router

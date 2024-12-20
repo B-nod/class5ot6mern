@@ -20,8 +20,7 @@ exports.postProduct = async(req,res)=>{
 
 // to show all the product
 exports.productlist = async(req, res)=>{
-    const product = await Product.find()
-    .populate('category', 'category_name') // to see data of connect table
+    const product = await Product.find().populate('category', 'category_name')
      if(!product){
         return res.status(400).json({error:"something went wrong"})
     }
@@ -54,7 +53,7 @@ exports.updateProduct = async (req, res) => {
             product_price: req.body.product_price,
             countInStock: req.body.countInStock,
             product_description: req.body.product_description,
-            product_image: req.file.paths,
+            product_image: req.file.path,
             category: req.body.category,
         }, { new: true });
 

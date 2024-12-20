@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 const Cards = (props) => {
-const{id,product_name,product_image,category,product_price,product_description,countInStock} =props.data
+const{_id,product_name,product_image,category,product_price,product_description,countInStock} =props.data
   return (
     <>
    
       <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div class="h-56 w-full">
           <a href="#">
-            <img class="mx-auto h-full dark:hidden" src={`http://locahost8080\${product_image}`} alt={product_image} />
+            <img class="mx-auto h-full dark:hidden" src={`http://localhost:8080/${product_image}`} alt={product_image} />
             <img class="mx-auto hidden h-full dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
           </a>
         </div>
@@ -89,7 +89,7 @@ const{id,product_name,product_image,category,product_price,product_description,c
 
           <div class="mt-4 ">
             <p class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white mb-5">Rs.{product_price}</p>
-              <Link >
+              <Link  to={`/productdetail/${_id}`}>
               <button type="button" class="inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
             <svg class="h-5 w-5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
